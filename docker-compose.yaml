@@ -1,0 +1,51 @@
+version: "3.2"
+services:
+    app:
+        container_name: node-server-depl
+        restart: always
+        build:
+            context: ./backend
+            dockerfile: node.Dockerfile
+        networks: 
+            - node-react-depl
+        volumes: 
+            - ${SERVER_ROOT}:/usr/src/app/node-server
+            - "/usr/src/app/node-server/node_modules"
+        ports:
+            - '3003:3000'
+        links: 
+            - mysql-node-depl
+    react-depl:
+        container_name: react-client-depl
+        build: 
+            context: ./frontend
+            dockerfile: react.Dockerfile
+        volumes: 
+            - ${CLIENT_ROOT}:/usr/src/app/react-client
+            - "/usr/src/app/react-client/node_modules"
+        networks:
+            - node-react-depl
+        ports: 
+            - "4500:3000"
+    mysql-node-depl:
+        image: mysql:${MYSQL_VERSION}
+        restart: always
+        ports:
+            - "33011:3306"
+        volumes:
+            - mysql-data-depl:/var/lib/mysql
+        networks:
+            - node-react-depl
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            # MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_DATABASE: "${DB_NAME}"
+            MYSQL_USER: "${DB_USERNAME}"
+            MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+            # MYSQL_PASSWORD: "${DB_PASSWORD}"
+            # insecureAuth : "true"
+        container_name: mysql-node-depl
+networks:
+    node-react-depl:
+volumes:
+    mysql-data-depl:
