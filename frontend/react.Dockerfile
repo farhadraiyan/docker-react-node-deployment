@@ -14,4 +14,4 @@ RUN npm install
 COPY ./react-client /usr/src/app/react-client/
 
 # Serve the app
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]

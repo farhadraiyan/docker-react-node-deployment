@@ -16,4 +16,4 @@ RUN npm install
 COPY ./node-server /usr/src/app/node-server/
 
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev" ]
