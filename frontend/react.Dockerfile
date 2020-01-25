@@ -11,10 +11,7 @@ COPY ./react-client/package*.json /usr/src/app/react-client/
 RUN npm install
 
 # Get all the code needed to run the app
-COPY ./react-client /usr/src/app/react-client
-
-# Expose the port the app runs in
-EXPOSE 4500
+COPY ./react-client /usr/src/app/react-client/
 
 # Serve the app
-CMD ["npm", "start"]
+CMD ["npm", "run", "start"]
