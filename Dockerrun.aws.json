@@ -5,13 +5,15 @@
             "name": "react-client",
             "image": "farhad1987/testdeploy-client",
             "host": "react-client",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "node-server",
             "image": "farhad1987/testdeploy-server",
             "host": "app",
-            "essential": false
+            "essential": false,
+            "memory": 128
         },
         {
             "name": "nginx",
@@ -24,7 +26,8 @@
                     "containerPort":80
                 }
             ], 
-            "links": ["react-client", "node-server"]
+            "links": ["react-client", "node-server"],
+            "memory": 128
 
         }
 
