@@ -5,7 +5,7 @@ FROM node:8.17.0-alpine3.9
 WORKDIR /usr/src/app/react-client
 
 # Copy dependency definitions
-COPY ./react-client/package*.json /usr/src/app/react-client/
+COPY ./react-client/package.json /usr/src/app/react-client/
 
 # Install dependecies
 RUN npm install

@@ -10,9 +10,9 @@ script:
     - docker run farhad1987/react-test npm test -- --coverage
 
 after_success:
-    - docker-build -t farhad1987/testdeploy-client ./frontend/react-client
-    - docker-build -t farhad1987/testdeploy-server ./backend/node-server
-    - docker-build -t farhad1987/testdeplo-nginx ./web
+    - docker build -t farhad1987/testdeploy-client ./frontend/react-client
+    - docker build -t farhad1987/testdeploy-server ./backend/node-server
+    - docker build -t farhad1987/testdeplo-nginx ./web
     #login to docker cli
     - echo "$DOCKER_PASSWORD" docker login -u "$DOCKER_ID" --password-stdin
     #push docker images to docker hub
