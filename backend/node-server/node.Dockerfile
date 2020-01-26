@@ -9,11 +9,11 @@ WORKDIR /usr/src/app/node-server
 #existing project.
 # RUN npm install express-generator 
 
-COPY ./node-server/package*.json /usr/src/app/node-server/
+COPY package*.json /usr/src/app/node-server/
 
 RUN npm install
 
-COPY ./node-server /usr/src/app/node-server/
+COPY . /usr/src/app/node-server/
 
 
-CMD [ "npm", "run", "start" ]
+CMD [ "npm", "run", "dev" ]

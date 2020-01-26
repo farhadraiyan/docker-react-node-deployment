@@ -5,13 +5,13 @@ FROM node:8.17.0-alpine3.9 as builder
 WORKDIR /usr/src/app/react-client
 
 # Copy dependency definitions
-COPY ./react-client/package*.json /usr/src/app/react-client/
+COPY package*.json /usr/src/app/react-client/
 
 # Install dependecies
 RUN npm install
 
 # Get all the code needed to run the app
-COPY ./react-client /usr/src/app/react-client/
+COPY . /usr/src/app/react-client/
 
 # Serve the app
 RUN npm run build
@@ -22,6 +22,6 @@ FROM nginx
 
 EXPOSE 3000
 #override the default default.conf file
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 COPY --from=builder /usr/src/app/react-client/build /usr/share/nginx/html

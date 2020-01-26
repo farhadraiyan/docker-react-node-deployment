@@ -4,10 +4,10 @@ services:
     - docker
 
 before_install:
-    - docker build -t farhad1987/react-test -f ./frontend/react.Dockerfile ./frontend/react-client
+    - docker build -t farhad1987/react-test -f ./frontend/react-client/react.Dockerfile ./frontend/react-client
 
 script:
-    - docker run farhad1987/react-test npm test -- --coverage
+    - docker run -e CI=true USERNAME/react-test npm test
 
 after_success:
     - docker build -t farhad1987/testdeploy-client ./frontend/react-client
