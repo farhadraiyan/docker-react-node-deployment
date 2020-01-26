@@ -19,5 +19,18 @@ after_success:
     - docker push farhad1987/testdeploy-client
     - docker push farhad1987/testdeploy-server
     - docker push farhad1987/testdeploy-nginx
+deploy:
+    edge: true
+    provider: elasticbeanstalk
+    region: us-east-1
+    app: testdeploy
+    env: Testdeploy-env
+    bucket_name: elasticbeanstalk-us-east-1-351210212611
+    bucket_path: docker-deploy
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: 
+        secure: $AWS_SECRET_KEY
 
     

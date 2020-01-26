@@ -39,6 +39,8 @@ services:
         command: --default-authentication-plugin=mysql_native_password
         environment:
             # MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+            MYSQL_PORT: "${DB_PORT}"
+            MYSQL_HOST: "${DB_HOST}"
             MYSQL_DATABASE: "${DB_NAME}"
             MYSQL_USER: "${DB_USERNAME}"
             MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"

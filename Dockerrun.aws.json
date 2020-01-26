@@ -3,7 +3,30 @@
     "containerDefinations": [
         {
             "name": "react-client",
-            "image": ""
+            "image": "farhad1987/testdeploy-client",
+            "host": "react-client",
+            "essential": false
+        },
+        {
+            "name": "node-server",
+            "image": "farhad1987/testdeploy-server",
+            "host": "app",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "farhad1987/testdeploy-nginx",
+            "host": "nginx",
+            "essential": true,
+            "portMapping":[
+                {
+                    "hostPort": 80,
+                    "containerPort":80
+                }
+            ], 
+            "links": ["react-client", "node-server"]
+
         }
+
     ]
 }
